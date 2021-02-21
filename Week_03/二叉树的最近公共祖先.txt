@@ -1,0 +1,12 @@
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        //所有的return返回值
+        // root为p 且q为p的子节点 则root为p 同理q一样，这样就返回root就行了
+        if(root==null || root==p||root==q) return root;
+        TreeNode left =lowestCommonAncestor(root.left,p,q);//从左边找p、q的公共祖先
+        TreeNode right =lowestCommonAncestor(root.right,p,q);//从右边找p、q的公共祖先
+        if(left == null) return right;//左边没找 就返回右边
+        if(right == null) return left;//右边没找到 就返回左边
+        return root;//存在两边 就返回root
+    }
+}

@@ -1,0 +1,27 @@
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> res =new ArrayList();
+        backtracing(nums,0,res);
+        return res;
+    }
+    public void backtracing(int[] nums,int index,List<List<Integer>> res){
+        if(index==nums.length-1){
+            ArrayList<Integer> list =new ArrayList();
+            for(int a:nums){
+                list.add(a);
+            }
+            res.add(list);
+        }
+        for(int i =index;i<nums.length;i++){
+           swap(nums,index,i);
+           backtracing(nums,index+1,res);
+           swap(nums,index,i);
+        }
+    }
+    public int[] swap(int[] nums,int i ,int j){
+        int temp =nums[i];
+        nums[i] =nums[j];
+        nums[j] =temp;
+        return nums;
+    }
+}
